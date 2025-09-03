@@ -10,7 +10,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
     public GameObject objectToHide;
     public GameObject loseScreen;
     public GameObject winScreen;
-    public AudioSource audioSource;
+    public AudioSource soundEffectPlayer;
 
     // Start is called before the first frame update
     void Start()
@@ -44,7 +44,15 @@ public class Player : MonoBehaviour, IPointerClickHandler
     {
         if (collision.gameObject.tag == "Finish")
         {
-            audioSource.Play();
+            if (soundEffectPlayer != null)
+            {
+                soundEffectPlayer.Play();
+            }
+            else
+            {
+                Debug.Log("AudioSource component missing from Player");
+            }
+            
             winScreen.SetActive(true);
             if (timer > PlayerPrefs.GetFloat("HighScore"))
             {
