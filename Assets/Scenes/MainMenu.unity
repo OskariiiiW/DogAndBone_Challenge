@@ -1225,6 +1225,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainMenu: {fileID: 991109640}
   settingsMenu: {fileID: 695066074}
+  volumeSlider: {fileID: 245743174}
+  backgroundMusic: {fileID: 0}
+  soundEffects: {fileID: 0}
 --- !u!114 &997770194
 MonoBehaviour:
   m_ObjectHideFlags: 0

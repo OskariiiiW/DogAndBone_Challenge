@@ -6,6 +6,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
     private Rigidbody2D rb;
     private Vector3 screenPosition;
     private bool isActive;
+    private float timer = 0; // used for high score
     public GameObject objectToHide;
     public GameObject loseScreen;
     public GameObject winScreen;
@@ -35,6 +36,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
         if (isActive)
         {
             rb.transform.position = Camera.main.ScreenToWorldPoint(screenPosition);
+            timer = timer + Time.deltaTime;
         }
     }
 
@@ -44,12 +46,19 @@ public class Player : MonoBehaviour, IPointerClickHandler
         {
             audioSource.Play();
             winScreen.SetActive(true);
+            if (timer > PlayerPrefs.GetFloat("HighScore"))
+            {
+                PlayerPrefs.SetFloat("HighScore", timer);
+                PlayerPrefs.Save();
+                Debug.Log("New High Score: " + timer);
+            }
         }
         else
         {
             loseScreen.SetActive(true);
         }
         isActive = false;
+
     }
     
     private void AddPhysics2DRaycaster() // used for detecting user clicking
