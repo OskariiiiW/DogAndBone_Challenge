@@ -3,6 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    public GameObject mainMenu;
+    public GameObject settingsMenu;
 
     public void LoadScene(string sceneName)
     {
@@ -19,7 +21,19 @@ public class MainMenu : MonoBehaviour
 
     public void ShowSettingsMenu()
     {
-        
+        mainMenu.SetActive(false);
+        settingsMenu.SetActive(true);
+    }
+
+    public void ShowMainMenu()
+    {
+        settingsMenu.SetActive(false);
+        mainMenu.SetActive(true);
+    }
+
+    public void VolumeSliderChanged(float volume)
+    {
+        PlayerPrefs.SetFloat("MasterVolume", volume);
     }
 
     public void QuitGame()

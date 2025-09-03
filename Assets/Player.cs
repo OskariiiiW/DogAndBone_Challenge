@@ -52,7 +52,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
         isActive = false;
     }
     
-    private void AddPhysics2DRaycaster() // used for detecting user clicks
+    private void AddPhysics2DRaycaster() // used for detecting user clicking
     {
         Physics2DRaycaster physicsRaycaster = FindObjectOfType<Physics2DRaycaster>();
         if (physicsRaycaster == null)
