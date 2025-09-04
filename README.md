@@ -14,4 +14,4 @@ Known issues:
 
 What I skipped:
 - Creating multiple levels. I didn't because the main functionality would be the same, unless I added new mechanics.
-- Updating the high score in the same scene after beating it (it only updates when loading the scene). A small bug I noticed after building.
+- Updating the high score in the same scene after beating it (it only updates when loading the scene).
