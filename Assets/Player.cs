@@ -7,10 +7,14 @@ public class Player : MonoBehaviour, IPointerClickHandler
     private Vector3 screenPosition;
     private bool isActive;
     private float timer = 0; // used for high score
+    private Vector3 offset; // used for camera movement
+    private Vector3 targetPos; // used for camera movement
     public GameObject objectToHide;
     public GameObject loseScreen;
     public GameObject winScreen;
     public AudioSource soundEffectPlayer;
+    public float lerpSpeed = 0.1f;
+    public Camera mainCamera;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +28,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
     {
         isActive = true;
         objectToHide.SetActive(false);
+        offset = mainCamera.transform.position - transform.position;
     }
 
 
@@ -36,6 +41,9 @@ public class Player : MonoBehaviour, IPointerClickHandler
         if (isActive)
         {
             rb.transform.position = Camera.main.ScreenToWorldPoint(screenPosition);
+            Debug.Log("Offset: " + offset + " Target Pos: " + targetPos + " Player Pos: " + transform.position);
+            targetPos = transform.position + offset + new Vector3(0, 0, -10);
+            mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position, targetPos, lerpSpeed * Time.deltaTime);
             timer = timer + Time.deltaTime;
         }
     }

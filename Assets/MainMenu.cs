@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -11,6 +12,7 @@ public class MainMenu : MonoBehaviour
 
     public AudioSource backgroundMusic;
     public AudioSource soundEffects;
+    public Animator transition;
 
     private void Start() // I was a bit lazy and used the same script for all scenes
     {
@@ -30,7 +32,7 @@ public class MainMenu : MonoBehaviour
     {
         if (sceneName != null)
         {
-            SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
+            StartCoroutine(LoadLevel(sceneName));
         }
         else
         {
@@ -61,5 +63,12 @@ public class MainMenu : MonoBehaviour
     {
         Application.Quit();
         Debug.Log("Quit Game");
+    }
+
+    IEnumerator LoadLevel(string sceneName)
+    {
+        transition.SetTrigger("Start");
+        yield return new WaitForSeconds(0.5f);
+        SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
     }
 }
